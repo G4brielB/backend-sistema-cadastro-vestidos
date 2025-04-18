@@ -5,11 +5,12 @@ import mysql from "mysql2";
 const port = 3000;
 const app = express();
 app.use(express.json())
+app.use(express.urlencoded({extends:false}))
 
 const conexao = mysql.createConnection({
-    host: "localhost",
+    host: "127.0.0.1",
     user:"root",
-    password:"root",
+    password:"1234",
     database:"vestido"
 })
 
@@ -38,7 +39,7 @@ app.post('/vestidos' , (req, res) => {
     
     res.redirect('/');
     
-})
+}) 
 
 app.get('/vestidos', (req,res) => {
     res.json(vestidos);
@@ -46,5 +47,5 @@ app.get('/vestidos', (req,res) => {
 
 
 app.listen(port, () => {
-    console.log("Servidor rodando em http://localhost:3001")
+    console.log("Servidor rodando em http://localhost:3000")
 })
